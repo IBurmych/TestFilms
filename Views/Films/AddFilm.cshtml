@@ -1,0 +1,21 @@
+﻿@model Film
+@{
+    ViewData["Title"] = "AddFilm";
+    List<Category>? categories = ViewData["categories"] as List<Category>;
+}
+
+<h1>Add Film</h1>
+
+<form class="w-50 d-flex flex-column" asp-controller="Films" asp-action="CreateFilm" method="post">
+    Name:  <input asp-for="Name" /> <br />
+    Director: <input asp-for="Director" /><br />
+    Release: <input asp-for="Release" /><br />
+
+    @if (categories != null)
+    {
+        <div>Categories</div>
+        <select id="Categories" multiple asp-for="CategoriesIds" asp-items="Category.GetCategoriesOptions(categories)">
+        </select>
+    }
+    <button class="mt-4 rounded" type="submit">Add</button>
+</form>

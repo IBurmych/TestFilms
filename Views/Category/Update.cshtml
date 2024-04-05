@@ -1,0 +1,26 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Update Category";
+    List<Category>? categories = ViewData["categories"] as List<Category>;
+}
+
+<h1>Update Category</h1>
+
+<form class="w-50 d-flex flex-column" asp-controller="Category" asp-action="UpdateCategory" asp-route-id="@Model.Id" method="post">
+    Name:  <input asp-for="Name" /> <br />
+    @if (categories != null)
+    {
+        <div>Parent Category:</div>
+        <select id="ParentCategoryId" name="ParentCategoryId">
+            @foreach (Category category in categories)
+            {
+                if(Model.ParentCategoryId == category.Id )
+                {
+                    <option value="@category.Id" selected>@category.Name</option>
+                }
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    }
+    <button class="mt-4 rounded" type="submit">Update</button>
+</form>
