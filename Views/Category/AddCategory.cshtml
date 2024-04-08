@@ -12,6 +12,7 @@
     {
         <div>Parent Category:</div>
         <select id="ParentCategoryId" name="ParentCategoryId">
+            <option selected></option>
             @foreach (Category category in categories)
             {
                 <option value="@category.Id">@category.Name</option>

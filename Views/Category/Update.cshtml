@@ -12,13 +12,17 @@
     {
         <div>Parent Category:</div>
         <select id="ParentCategoryId" name="ParentCategoryId">
+            <option selected></option>
             @foreach (Category category in categories)
             {
-                if(Model.ParentCategoryId == category.Id )
+                if (category.Id != Model.Id)
                 {
-                    <option value="@category.Id" selected>@category.Name</option>
+                    if (Model.ParentCategoryId == category.Id)
+                    {
+                        <option value="@category.Id" selected>@category.Name</option>
+                    }
+                    <option value="@category.Id">@category.Name</option>
                 }
-                <option value="@category.Id">@category.Name</option>
             }
         </select>
     }

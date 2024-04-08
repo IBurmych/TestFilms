@@ -1,4 +1,4 @@
-async function getFilms() {
+const getFilms = async () => {
     let data = []
      await fetch('GetFilms', {
         method: "GET"
@@ -25,7 +25,7 @@ const GetTable = (films) => {
     });
 }
 
-async function InitTable() {
+const InitTable = async () => {
     let films = await getFilms();
     films.forEach((item) => {
         if (item.categories) {

@@ -2,8 +2,7 @@ const getCategories = async () => {
     let data = []
     await fetch('GetCategories', {
         method: "GET"
-    })
-        .then((response) => response.json())
+    }).then((response) => response.json())
         .then((json) => {
             data = json
         });
@@ -23,8 +22,7 @@ const GetTable = (categories) => {
         ]
     });
 }
-
-async function InitTable() {
+const InitTable = async () => {
     let categories = await getCategories();
     categories.forEach((item) => {
         if (item.films) {
