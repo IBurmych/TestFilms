@@ -1,7 +1,10 @@
-﻿@model Film
+﻿@using System.Text.Json
+
+@model Film
 @{
-    ViewData["Title"] = "AddFilm";
+    ViewData["Title"] = "Add Film";
     List<Category>? categories = ViewData["categories"] as List<Category>;
+    var selectedList = Category.GetCategoriesOptions(categories);
 }
 
 <h1>Add Film</h1>
@@ -14,8 +17,7 @@
     @if (categories != null)
     {
         <div>Categories</div>
-        <select id="Categories" multiple asp-for="CategoriesIds" asp-items="Category.GetCategoriesOptions(categories)">
-        </select>
+        <div id="film-categories" data-base="@JsonSerializer.Serialize(selectedList)" class="border rounded mt-1"></div>
     }
     <button class="mt-4 rounded" type="submit">Add</button>
 </form>

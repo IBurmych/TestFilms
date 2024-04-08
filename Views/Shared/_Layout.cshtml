@@ -53,6 +53,10 @@
     {
         <script src="~/js/categories.js" asp-append-version="true"></script>
     }
+    else if ((string?)ViewData["Title"] == "Add Film" || (string?)ViewData["Title"] == "Update Film")
+    {
+        <script src="~/js/selectCategories.js" asp-append-version="true"></script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

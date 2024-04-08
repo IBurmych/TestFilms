@@ -1,4 +1,6 @@
-﻿@model Film
+﻿@using System.Text.Json
+
+@model Film
 @{
     ViewData["Title"] = "Update Film";
     List<Category>? categories = ViewData["categories"] as List<Category>;
@@ -6,7 +8,7 @@
 
 <h1>Update Film</h1>
 
-<form class="w-50 d-flex flex-column" asp-controller="Films" asp-action="UpdateFilm" asp-route-id="@Model.Id" method="post">
+<form id="update-form" class="w-50 d-flex flex-column" asp-controller="Films" asp-action="UpdateFilm" asp-route-id="@Model.Id" method="post">
     Name:  <input asp-for="Name" /> <br />
     Director: <input asp-for="Director" /><br />
     Release: <input asp-for="Release" /><br />
@@ -14,8 +16,7 @@
     @if (categories != null)
     {
         <div>Categories</div>
-        <select id="Categories" multiple asp-for="CategoriesIds" asp-items="Category.GetCategoriesOptions(categories)">
-        </select>
+        <div id="film-categories" data-selected="@JsonSerializer.Serialize(Model.CategoriesIds)" data-base="@JsonSerializer.Serialize(Category.GetCategoriesOptions(categories))" class="border rounded mt-1"></div>
     }
     <button class="mt-4 rounded" type="submit">Update</button>
 </form>

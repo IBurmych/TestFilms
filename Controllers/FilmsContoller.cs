@@ -27,7 +27,13 @@ namespace TestFilms.Controllers
         }
         public async Task<IActionResult> Update(int? id)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
             Film? film = await _db.Films.FindAsync(id);
+
+            film.CategoriesIds = await _db.Categories.Where(c =>  c.Films.Any(f => f.Id == film.Id)).Select(c => c.Id).ToArrayAsync();
             List<Category> categories = _db.Categories.ToList();
             ViewData["categories"] = categories;
 

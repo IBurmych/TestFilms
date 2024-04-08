@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.selected-options {
+    height: 26px;
+    display: ruby;
+    overflow-y: auto;
+}

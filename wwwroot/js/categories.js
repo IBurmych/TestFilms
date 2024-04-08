@@ -1,4 +1,4 @@
-async function getCategories() {
+const getCategories = async () => {
     let data = []
     await fetch('GetCategories', {
         method: "GET"
