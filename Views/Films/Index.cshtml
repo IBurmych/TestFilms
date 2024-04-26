@@ -2,7 +2,7 @@
     ViewData["Title"] = "Films";
 }
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Films" asp-action="AddFilm">Add film</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="Films" asp-action="ManageFilms">Manage films</a>
 
 <table id="films" class="display cell-border compact stripe">
     <thead>
@@ -13,5 +13,20 @@
             <th>Categories</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach (Film film in Model)
+        {
+            <tr>
+                <td>@film.Name</td>
+                <td>@film.Release</td>
+                <td>@film.Director</td>
+                <td>
+                    @if (film != null && film.Categories != null)
+                    {
+                        <div>@string.Join(", ",film.Categories.Select(x => x.Name))</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-

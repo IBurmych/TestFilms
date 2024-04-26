@@ -9,42 +9,15 @@ const getCategories = async () => {
     return data;
 }
 
-const GetTable = (categories) => {
+const InitTable = () => {
     return new DataTable('#categories', {
         responsive: true,
-        data: categories,
         columns: [
+            { data: 'id', visible: false},
             { data: 'name' },
             { data: 'films' },
-            { data: 'nesting' },
-            { defaultContent: '<button class="delete">Delete</button>' },
-            { defaultContent: '<button class="update">Update</button>' }
+            { data: 'nesting' }
         ]
-    });
-}
-const InitTable = async () => {
-    let categories = await getCategories();
-    categories.forEach((item) => {
-        if (item.films) {
-            item.films = item.films.length;
-        }
-    })
-
-    table = GetTable(categories)
-    table.on('click', 'tbody tr td', function () {
-        let data = table.row(this).data();
-        if (this.firstChild.className === 'delete') {
-            fetch(`DeleteCategory?id=${data.id}`, {
-                method: "DELETE"
-            })
-                .then(() => {
-                    table.row(this).remove().draw();
-                })
-        }
-        else if (this.firstChild.className === 'update') {
-            window.location.href = `Update/${data.id}`
-        }
-
     });
 }
 InitTable()

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TestFilms.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/survey-jquery/survey.jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -42,7 +45,6 @@
             &copy; 2024 - TestFilms - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     @if ((string?)ViewData["Title"] == "Films")
@@ -53,9 +55,13 @@
     {
         <script src="~/js/categories.js" asp-append-version="true"></script>
     }
-    else if ((string?)ViewData["Title"] == "Add Film" || (string?)ViewData["Title"] == "Update Film")
+    else if ((string?)ViewData["Title"] == "Manage Films")
     {
-        <script src="~/js/selectCategories.js" asp-append-version="true"></script>
+        <script src="~/js/manageFilms.js" asp-append-version="true"></script>
+    }
+    else if ((string?)ViewData["Title"] == "Manage Categories")
+    {
+        <script src="~/js/manageCategories.js" asp-append-version="true"></script>
     }
     @await RenderSectionAsync("Scripts", required: false)
 </body>

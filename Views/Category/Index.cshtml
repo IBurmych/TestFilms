@@ -1,15 +1,28 @@
-﻿@{
+﻿@model List<Category>
+@{
     ViewData["Title"] = "Categories";
 }
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="AddCategory">Add category</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="ManageCategories">Manage categories</a>
 
 <table id="categories" class="display cell-border compact stripe">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Films</th>
             <th>Nesting</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach (Category category in Model)
+        {
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.Name</td>
+                <td>@category?.Films?.Count()</td>
+                <td>@category?.Nesting</td>
+            </tr>
+        }
+    </tbody>
 </table>

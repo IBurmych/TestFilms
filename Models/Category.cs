@@ -15,11 +15,10 @@ namespace TestFilms.Models
         [Column("Parent_category_id")]
         [ForeignKey("ParentBucketGroup")]
         public int? ParentCategoryId { get; set; }
-        public virtual Category? ParentCategory { get; set; }
-        public virtual ICollection<Category>? Children { get; set; }
-
+        public virtual Category? ParentCategory { get; set; } = null;
+        public virtual ICollection<Category>? Children { get; set; } = null;
         [NotMapped]
-        public int? Nesting { set; get; }
+        public int? Nesting { set; get; } = 0;
 
         public static SelectList GetCategoriesOptions(List<Category> categories)
         {
